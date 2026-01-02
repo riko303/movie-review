@@ -1,0 +1,17 @@
+.star {
+  position: relative;
+  display: inline-block;
+  font-size: 32px;
+  cursor: pointer;
+  color: lightgray;
+}
+
+.star .fill {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 0%;
+  overflow: hidden;
+  color: gold;
+  pointer-events: none;
+}
