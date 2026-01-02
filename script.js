@@ -1,3 +1,5 @@
+alert("reviewsの中身：" + JSON.stringify(reviews));
+
 let reviews = loadReviews();
 let editingIndex = null;
 
