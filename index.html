@@ -1,236 +1,31 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-<meta charset="UTF-8">
-<title>感想メモ</title>
-<style>
-
-@media (max-width: 600px) {
-body {
-padding: 10px;
-}
-input, textarea {
-font-size: 14px;
-padding: 6px;
-}
-button {
-font-size: 14px;
-padding: 8px 12px;
-}
-.star {
-font-size: 24px; /* 星を小さく */
-width: 24px;
-height: 24px;
-}
-}
-
-body {
-font-family: sans-serif;
-background: #f5f5f5;
-padding: 20px;
-}
-input, textarea {
-width: 100%;
-margin-bottom: 10px;
-padding: 8px;
-font-size: 16px;
-}
-button {
-padding: 10px 16px;
-background: #6c9eff;
-color: white;
-border: none;
-border-radius: 6px;
-margin-right: 5px;
-}
-.review {
-background: white;
-margin-top: 10px;
-padding: 10px;
-border-radius: 6px;
-}
-
-/* ⭐ 星用CSS */
-.star {
-position: relative;
-display: inline-block;
-font-size: 32px;
-cursor: pointer;
-color: lightgray;
-}
-.star .fill {
-position: absolute;
-top: 0;
-left: 0;
-width: 0%;
-overflow: hidden;
-color: gold;
-z-index: 1;
-pointer-events: none;
-}
-</style>
+  <meta charset="UTF-8">
+  <title>感想メモ</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="star.css">
 </head>
 <body>
 
-<h1>🎬 映画・ドラマ感想メモ</h1>
+  <h1>🎬 映画・ドラマ感想メモ</h1>
 
-<input id="title" placeholder="作品名">
-<textarea id="memo" placeholder="感想"></textarea>
+  <input id="title" placeholder="作品名">
+  <textarea id="memo" placeholder="感想"></textarea>
 
-<div id="star-rating"></div>
-<input type="hidden" id="star" value="5">
+  <div id="star-rating"></div>
+  <input type="hidden" id="star" value="5">
 
-<button onclick="saveReview()">保存する</button>
+  <button id="saveBtn">保存する</button>
 
-<h2>📚 保存した感想</h2>
-<div id="output"></div>
+  <h2>📚 保存した感想</h2>
+  <div id="output"></div>
 
-<script>
-let reviews = [];
-let editingIndex = null;
-
-try {
-const saved = localStorage.getItem("reviews");
-if (saved) reviews = JSON.parse(saved);
-} catch (e) {
-localStorage.clear();
-reviews = [];
-}
-
-const starContainer = document.getElementById("star-rating");
-const starInput = document.getElementById("star");
-
-function createStars(value = 5) {
-starContainer.innerHTML = "";
-
-for (let i = 1; i <= 5; i++) {
-const star = document.createElement("span");
-star.className = "star";
-star.textContent = "★";
-
-const fill = document.createElement("span");
-fill.className = "fill";
-fill.textContent = "★";
-
-if (value >= i) fill.style.width = "100%";
-else if (value >= i - 0.5) fill.style.width = "50%";
-else fill.style.width = "0%";
-
-// ホバーで光る
-star.addEventListener("mousemove", (e) => {
-const rect = star.getBoundingClientRect();
-const x = e.clientX - rect.left;
-fill.style.width = x < rect.width / 2 ? "50%" : "100%";
-});
-star.addEventListener("mouseleave", () => {
-if (value >= i) fill.style.width = "100%";
-else if (value >= i - 0.5) fill.style.width = "50%";
-else fill.style.width = "0%";
-});
-
-// クリックで評価固定
-star.addEventListener("click", (e) => {
-const rect = star.getBoundingClientRect();
-const x = e.clientX - rect.left;
-starInput.value = x < rect.width / 2 ? i - 0.5 : i;
-createStars(starInput.value);
-});
-
-star.appendChild(fill);
-starContainer.appendChild(star);
-}
-}
-
-function saveReview() {
-const title = document.getElementById("title").value;
-const memo = document.getElementById("memo").value;
-const star = parseFloat(document.getElementById("star").value);
-
-if (!title || !memo) {
-alert("作品名と感想を入れてね！");
-return;
-}
-
-if (editingIndex === null) reviews.push({ title, memo, star });
-else {
-reviews[editingIndex] = { title, memo, star };
-editingIndex = null;
-}
-
-localStorage.setItem("reviews", JSON.stringify(reviews));
-document.getElementById("title").value = "";
-document.getElementById("memo").value = "";
-document.getElementById("star").value = "5";
-
-createStars();
-showReviews();
-}
-
-function deleteReview(index) {
-reviews.splice(index, 1);
-localStorage.setItem("reviews", JSON.stringify(reviews));
-showReviews();
-}
-
-function editReview(index) {
-const r = reviews[index];
-document.getElementById("title").value = r.title;
-document.getElementById("memo").value = r.memo;
-document.getElementById("star").value = r.star;
-createStars(r.star);
-editingIndex = index;
-}
-
-function showReviews() {
-const output = document.getElementById("output");
-output.innerHTML = "";
-
-reviews.forEach((r, index) => {
-const reviewDiv = document.createElement("div");
-reviewDiv.className = "review";
-
-const h3 = document.createElement("h3");
-h3.textContent = r.title;
-reviewDiv.appendChild(h3);
-
-const p = document.createElement("p");
-p.textContent = "評価：";
-for (let i = 1; i <= 5; i++) {
-const star = document.createElement("span");
-star.className = "star";
-star.textContent = "★";
-
-const fill = document.createElement("span");
-fill.className = "fill";
-fill.textContent = "★";
-
-if (r.star >= i) fill.style.width = "100%";
-else if (r.star >= i - 0.5) fill.style.width = "50%";
-else fill.style.width = "0%";
-
-star.appendChild(fill);
-p.appendChild(star);
-}
-reviewDiv.appendChild(p);
-
-const memoP = document.createElement("p");
-memoP.textContent = r.memo;
-reviewDiv.appendChild(memoP);
-
-const editBtn = document.createElement("button");
-editBtn.textContent = "✏ 編集";
-editBtn.onclick = () => editReview(index);
-reviewDiv.appendChild(editBtn);
-
-const deleteBtn = document.createElement("button");
-deleteBtn.textContent = "🗑 削除";
-deleteBtn.onclick = () => deleteReview(index);
-reviewDiv.appendChild(deleteBtn);
-
-output.appendChild(reviewDiv);
-});
-}
-
+  <script src="storage.js"></script>
+  <script src="star.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
 createStars();
 showReviews();
 </script>
