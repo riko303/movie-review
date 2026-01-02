@@ -1,3 +1,5 @@
+console.log("⭐ star.js 読み込まれてるよ！");
+
 document.addEventListener("DOMContentLoaded", () => {
   const starContainer = document.getElementById("star-rating");
   const starInput = document.getElementById("star");
