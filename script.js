@@ -1,1 +1,3 @@
-alert("script.js きた！！！");
+function saveReview() {
+  alert("保存ボタン押されたよ！");
+}
