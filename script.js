@@ -1,4 +1,4 @@
-alert("script.js は動いてるよ！");
+alert("script.js きた！！！");
 document.getElementById("saveBtn").addEventListener("click", saveReview);
 
 function saveReview() {
