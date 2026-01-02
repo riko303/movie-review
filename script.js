@@ -1,4 +1,4 @@
-console.log("📦 script.js 動いてる！");
+
 document.getElementById("saveBtn").addEventListener("click", saveReview);
 
 function saveReview() {
