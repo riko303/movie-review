@@ -3,6 +3,8 @@ let reviews = loadReviews();
 let editingIndex = null;
 
 function saveReview() {
+  console.log("保存ボタン押された！");
+
   const title = document.getElementById("title").value;
   const memo = document.getElementById("memo").value;
   const star = parseFloat(document.getElementById("star").value);
@@ -12,13 +14,19 @@ function saveReview() {
     return;
   }
 
-  const review = { title, memo, star };
+  reviews.push({ title, memo, star });
 
-  reviews.push(review);
-  saveReviews(reviews);
+  localStorage.setItem("reviews", JSON.stringify(reviews));
 
-  clearForm();
-  showReviews();
+  // ⭐⭐⭐ ここ！！！
+  setTimeout(() => {
+    showReviews();
+  }, 50);
+
+  // 入力リセット
+  document.getElementById("title").value = "";
+  document.getElementById("memo").value = "";
+  document.getElementById("star").value = "5";
 }
 
 function clearForm() {
@@ -79,8 +87,4 @@ function showReviews() {
 
 showReviews();
 
-  // 入力欄リセット
-  document.getElementById("title").value = "";
-  document.getElementById("memo").value = "";
-  document.getElementById("star").value = "5";
-}
+  
