@@ -49,9 +49,11 @@ function editReview(index) {
   document.getElementById("title").value = r.title;
   document.getElementById("memo").value = r.memo;
   document.getElementById("star").value = r.star;
+  document.getElementById("date").value = r.date || "";
   createStars(r.star);
   editingIndex = index;
 }
+
 
 function showReviews() {
   const output = document.getElementById("output");
