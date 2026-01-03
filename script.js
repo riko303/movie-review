@@ -75,7 +75,6 @@ function editReview(index) {
   editingIndex = index;
 }
 
-
 function showReviews() {
   const output = document.getElementById("output");
   output.innerHTML = "";
