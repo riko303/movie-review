@@ -15,16 +15,16 @@ function saveReview() {
     return;
   }
 
+  // ⭐ ここが④！！！
   if (editingIndex === null) {
-  reviews.push({ title, memo, star, date });
-} else {
-  reviews[editingIndex] = { title, memo, star, date };
-  editingIndex = null;
-}
+    reviews.push({ title, memo, star, date });
+  } else {
+    reviews[editingIndex] = { title, memo, star, date };
+    editingIndex = null;
+  }
 
   localStorage.setItem("reviews", JSON.stringify(reviews));
 
-  // ⭐⭐⭐ ここ！！！
   setTimeout(() => {
     showReviews();
   }, 50);
@@ -33,6 +33,8 @@ function saveReview() {
   document.getElementById("title").value = "";
   document.getElementById("memo").value = "";
   document.getElementById("star").value = "5";
+  document.getElementById("date").value = "";
+}
 }
 
 function clearForm() {
