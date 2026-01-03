@@ -1,4 +1,3 @@
-alert("script.js 開始");
 
 let reviews = loadReviews();
 let editingIndex = null;
