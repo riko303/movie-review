@@ -3,23 +3,18 @@ let reviews = JSON.parse(localStorage.getItem("reviews")) || [];
 let editingIndex = null;
 
 function showPage(id) {
-  alert("showPage: " + id);
-
   document.querySelectorAll(".page").forEach(p => {
     p.classList.remove("active");
   });
 
   const target = document.getElementById(id);
-  
-
   if (target) {
     target.classList.add("active");
-  } else {
-  
+  }
 }
+
 function saveReview() {
   
-
   const title = document.getElementById("title").value;
   const memo = document.getElementById("memo").value;
   const star = parseFloat(document.getElementById("star").value);
@@ -40,15 +35,6 @@ function saveReview() {
   }
 
   localStorage.setItem("reviews", JSON.stringify(reviews));
-
-const plusBtn = document.getElementById("plusBtn");
-plusBtn.onclick = () => showPage("write");
-
-const listBtn = document.getElementById("listBtn");
-listBtn.onclick = () => {
-  showReviews(); // 一覧を更新
-  showPage("list");
-};
 
   setTimeout(() => {
     showReviews();
@@ -134,11 +120,23 @@ function saveAndBack() {
   showPage("home"); // ホーム画面に戻る
 }
 
-listBtn.onclick = () => {
-  alert("一覧ボタン押された！");
-  showReviews();
-  showPage("list");
-};
+const plusBtn = document.getElementById("plusBtn");
+if (plusBtn) {
+  plusBtn.onclick = () => showPage("write");
+}
+
+const listBtn = document.getElementById("listBtn");
+if (listBtn) {
+  listBtn.onclick = () => {
+    showReviews();
+    showPage("list");
+  };
+}
+
+function saveAndBack() {
+  saveReview();
+  showPage("home");
+}
 
 showReviews();
 
