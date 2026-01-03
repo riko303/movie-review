@@ -50,3 +50,28 @@ textarea {
   button { font-size: 14px; }
 }
 
+/* ▼ textarea が画面を覆わないようにする */
+textarea {
+  max-height: 60vh;
+  overflow-y: auto;
+  position: relative;
+  z-index: 1;
+}
+
+/* ▼ スマホでボタンが被らないように */
+button {
+  display: block;
+  width: 100%;
+  margin: 8px 0;
+}
+
+/* ▼ 画面切り替え用（安全版） */
+.page {
+  display: none;
+  position: relative;
+}
+
+.page.active {
+  display: block;
+  pointer-events: auto;
+}
