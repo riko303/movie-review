@@ -78,3 +78,9 @@ function showReviews() {
 }
 
 showReviews();
+
+  // 入力欄リセット
+  document.getElementById("title").value = "";
+  document.getElementById("memo").value = "";
+  document.getElementById("star").value = "5";
+}
