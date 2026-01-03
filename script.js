@@ -121,6 +121,11 @@ function showPage(id) {
   document.getElementById(id).classList.add("active");
 }
 
+function saveAndBack() {
+  saveReview(); // 元の保存関数を呼ぶ
+  showPage("home"); // ホーム画面に戻る
+}
+
 showReviews();
 
   
