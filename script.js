@@ -65,8 +65,8 @@ function showReviews() {
     div.appendChild(h3);
     
     const dateP = document.createElement("p");
-dateP.textContent = `📅 見た日：${r.date}`;
-reviewDiv.appendChild(dateP);
+    dateP.textContent = `📅 見た日：${r.date}`;
+    reviewDiv.appendChild(dateP);
 
     const p = document.createElement("p");
     p.textContent = `評価：${r.star}`;
