@@ -8,7 +8,8 @@ function saveReview() {
   const title = document.getElementById("title").value;
   const memo = document.getElementById("memo").value;
   const star = parseFloat(document.getElementById("star").value);
-  const date = new Date().toLocaleDateString();
+  const dateInput = document.getElementById("date").value;
+  const date = dateInput || new Date().toLocaleDateString();
 
   if (!title || !memo) {
     alert("作品名と感想を入れてね！");
