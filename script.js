@@ -32,6 +32,15 @@ function saveReview() {
 
   localStorage.setItem("reviews", JSON.stringify(reviews));
 
+const plusBtn = document.getElementById("plusBtn");
+plusBtn.onclick = () => showPage("write");
+
+const listBtn = document.getElementById("listBtn");
+listBtn.onclick = () => {
+  showReviews(); // 一覧を更新
+  showPage("list");
+};
+
   setTimeout(() => {
     showReviews();
   }, 50);
