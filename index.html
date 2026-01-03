@@ -1,9 +1,5 @@
 <!DOCTYPE html>
 <html lang="ja">
-  
-  <div id="home" class="page">🏠 ホーム</div>
-<div id="write" class="page">✍️ 書く</div>
-<div id="list" class="page">📚 一覧</div>
 
 <head>
   <meta charset="UTF-8">
@@ -15,33 +11,37 @@
 </head>
 <body>
 
-  <h1>🎬映画・ドラマ感想メモ</h1>
+ <body>
 
-  <input id="title" placeholder="作品名">
-  <textarea id="memo" placeholder="感想"></textarea>
+  <!-- ホーム画面 -->
+  <div id="home" class="page active">
+    <h1>🎬 映画・ドラマ感想メモ</h1>
+    <button id="plusBtn">➕ 感想を書く</button>
+    <button id="listBtn">📚 感想一覧</button>
+  </div>
 
-<label>
-  📅 見た日
-  <input type="date" id="date">
-</label>
+  <!-- 感想を書く画面 -->
+  <div id="write" class="page">
+    <input id="title" placeholder="作品名">
+    <textarea id="memo" placeholder="感想"></textarea>
+    <label>📅 見た日<input type="date" id="date"></label>
+    <div id="star-rating"></div>
+    <input type="hidden" id="star" value="5">
+    <button type="button" onclick="saveAndBack()">保存する</button>
+    <button type="button" onclick="showPage('home')">キャンセル</button>
+  </div>
 
-
-  <div id="star-rating"></div>
-  <input type="hidden" id="star" value="5">
-
-<button type="button" onclick="saveReview()">保存する</button>
-
-  <h2>📚 保存した感想</h2>
-  <div id="output"></div>
+  <!-- 感想一覧画面 -->
+  <div id="list" class="page">
+    <h2>📚 保存した感想</h2>
+    <div id="output"></div>
+    <button type="button" onclick="showPage('home')">🏠 ホームに戻る</button>
+  </div>
 
 <script src="storage.js" defer></script>
 <script src="star.js" defer></script>
 <script src="script.js?v=2" defer></script>
-<script>
-if ("serviceWorker" in navigator) {
-  navigator.serviceWorker.register("service-worker.js");
-}
-</script>
+</body>
 </body>
 
 </html>
