@@ -8,13 +8,14 @@ function saveReview() {
   const title = document.getElementById("title").value;
   const memo = document.getElementById("memo").value;
   const star = parseFloat(document.getElementById("star").value);
+  const date = new Date().toLocaleDateString();
 
   if (!title || !memo) {
     alert("作品名と感想を入れてね！");
     return;
   }
 
-  reviews.push({ title, memo, star });
+  reviews.push({ title, memo, star, date });
 
   localStorage.setItem("reviews", JSON.stringify(reviews));
 
@@ -62,6 +63,10 @@ function showReviews() {
     const h3 = document.createElement("h3");
     h3.textContent = r.title;
     div.appendChild(h3);
+    
+    const dateP = document.createElement("p");
+dateP.textContent = `📅 見た日：${r.date}`;
+reviewDiv.appendChild(dateP);
 
     const p = document.createElement("p");
     p.textContent = `評価：${r.star}`;
