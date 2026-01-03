@@ -40,6 +40,10 @@ button {
   pointer-events: none;
 }
 
+textarea {
+  max-height: 60vh;
+}
+
 @media (max-width: 600px) {
   body { padding: 10px; }
   input, textarea { font-size: 14px; }
