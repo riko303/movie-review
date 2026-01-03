@@ -35,7 +35,6 @@ function saveReview() {
   document.getElementById("star").value = "5";
   document.getElementById("date").value = "";
 }
-}
 
 function clearForm() {
   document.getElementById("title").value = "";
