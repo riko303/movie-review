@@ -1,4 +1,3 @@
-
 let reviews = loadReviews();
 let editingIndex = null;
 
