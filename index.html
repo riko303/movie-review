@@ -11,38 +11,42 @@
 </head>
 <body>
 
-  <!-- ホーム -->
-<div id="home" class="page active">
-  <h1>🎬 映画・ドラマ感想メモ</h1>
+  <!-- 🏠 ホーム画面 -->
+  <div id="home" class="page active">
+    <h1>🎬 映画・ドラマ感想メモ</h1>
 
-  <button id="plusBtn">➕ 感想を書く</button>
-  <button id="listBtn">📚 感想一覧</button>
-</div>
+    <button id="plusBtn">➕ 感想を書く</button>
+    <button id="listBtn">📚 感想一覧</button>
+  </div>
 
-<!-- 書くページ -->
-<div id="write" class="page">
-  <input id="title" placeholder="作品名">
-  <textarea id="memo" placeholder="感想"></textarea>
+  <!-- ✍️ 感想を書く画面 -->
+  <div id="write" class="page">
+    <input id="title" placeholder="作品名">
+    <textarea id="memo" placeholder="感想"></textarea>
 
-  <label>
-    📅 見た日
-    <input type="date" id="date">
-  </label>
+    <label>
+      📅 見た日
+      <input type="date" id="date">
+    </label>
 
-  <div id="star-rating"></div>
-  <input type="hidden" id="star" value="5">
+    <div id="star-rating"></div>
+    <input type="hidden" id="star" value="5">
 
-  <button onclick="saveAndBack()">💾 保存して戻る</button>
-  <button onclick="showPage('home')">← 戻る</button>
-</div>
+    <button onclick="saveAndBack()">💾 保存して戻る</button>
+    <button onclick="showPage('home')">← 戻る</button>
+  </div>
 
-<!-- 一覧ページ -->
-<div id="list" class="page">
-  <h2>📚 保存した感想</h2>
-  <div id="output"></div>
+  <!-- 📚 感想一覧画面 -->
+  <div id="list" class="page">
+    <h2>📚 保存した感想</h2>
+    <div id="output"></div>
 
-  <button onclick="showPage('home')">← ホームに戻る</button>
-</div>
+    <button onclick="showPage('home')">← ホームに戻る</button>
+  </div>
+
+  <!-- JS読み込み（bodyの一番下！） -->
+  <script src="script.js" defer></script>
+
 </body>
 
 </html>
