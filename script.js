@@ -1,4 +1,4 @@
-let reviews = loadReviews();
+let reviews = JSON.parse(localStorage.getItem("reviews")) || [];
 let editingIndex = null;
 
 function saveReview() {
