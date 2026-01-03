@@ -4,10 +4,6 @@ let reviews = loadReviews();
 let editingIndex = null;
 
 function saveReview() {
-  alert("保存ボタン押された！");
-  ...
-}
-
   const title = document.getElementById("title").value;
   const memo = document.getElementById("memo").value;
   const star = parseFloat(document.getElementById("star").value);
@@ -19,16 +15,11 @@ function saveReview() {
 
   const review = { title, memo, star };
 
-  if (editingIndex === null) {
-    reviews.push(review);
-  } else {
-    reviews[editingIndex] = review;
-    editingIndex = null;
-  }
-
+  reviews.push(review);
   saveReviews(reviews);
-  showReviews();
+
   clearForm();
+  showReviews();
 }
 
 function clearForm() {
