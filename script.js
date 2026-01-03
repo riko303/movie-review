@@ -1,6 +1,13 @@
 let reviews = JSON.parse(localStorage.getItem("reviews")) || [];
 let editingIndex = null;
 
+function showPage(id) {
+  document.querySelectorAll(".page").forEach(p => {
+    p.classList.remove("active");
+  });
+  document.getElementById(id).classList.add("active");
+}
+
 function saveReview() {
   console.log("保存ボタン押された！");
 
