@@ -16,7 +16,12 @@ function saveReview() {
     return;
   }
 
+  if (editingIndex === null) {
   reviews.push({ title, memo, star, date });
+} else {
+  reviews[editingIndex] = { title, memo, star, date };
+  editingIndex = null;
+}
 
   localStorage.setItem("reviews", JSON.stringify(reviews));
 
