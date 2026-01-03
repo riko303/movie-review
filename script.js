@@ -1,3 +1,4 @@
+
 let reviews = JSON.parse(localStorage.getItem("reviews")) || [];
 let editingIndex = null;
 
@@ -133,6 +134,12 @@ function saveAndBack() {
   saveReview(); // 元の保存関数を呼ぶ
   showPage("home"); // ホーム画面に戻る
 }
+
+listBtn.onclick = () => {
+  alert("一覧ボタン押された！");
+  showReviews();
+  showPage("list");
+};
 
 showReviews();
 
