@@ -45,7 +45,7 @@ function clearForm() {
 
 function deleteReview(index) {
   reviews.splice(index, 1);
-  saveReviews(reviews);
+  localStorage.setItem("reviews", JSON.stringify(reviews));
   showReviews();
 }
 
