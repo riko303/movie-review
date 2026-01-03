@@ -5,6 +5,8 @@ let editingIndex = null;
 
 function saveReview() {
   alert("保存ボタン押された！");
+  ...
+}
 
   const title = document.getElementById("title").value;
   const memo = document.getElementById("memo").value;
