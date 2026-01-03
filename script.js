@@ -3,23 +3,22 @@ let reviews = JSON.parse(localStorage.getItem("reviews")) || [];
 let editingIndex = null;
 
 function showPage(id) {
-  console.log("showPage 呼ばれた！", id);
+  alert("showPage: " + id);
 
   document.querySelectorAll(".page").forEach(p => {
     p.classList.remove("active");
   });
 
   const target = document.getElementById(id);
-  console.log("切り替え先:", target);
+  
 
   if (target) {
     target.classList.add("active");
   } else {
-    console.error("その id の page が見つからない😭", id);
-  }
+  
 }
 function saveReview() {
-  console.log("保存ボタン押された！");
+  
 
   const title = document.getElementById("title").value;
   const memo = document.getElementById("memo").value;
