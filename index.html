@@ -30,15 +30,8 @@
         
         
     </label>
-
-    <div id="star-rating"></div>
-    <input type="hidden" id="star" value="5">
-
-    <button onclick="saveAndBack()">💾 保存して戻る</button>
-    <button onclick="showPage('home')">← 戻る</button>
-  </div>
-
-<label>
+    
+    <label>
   📺 何で見た？
   <select id="watchBy">
     <option value="">選んでね</option>
@@ -51,12 +44,23 @@
   </select>
 </label>
 
-<input
-  type="text"
-  id="watchByOther"
-  placeholder="例：友だちの家、飛行機の中 など"
-  style="display:none;"
->
+  <input
+    type="text"
+    id="watchByOther"
+    placeholder="例：友だちの家、飛行機の中 など"
+    style="display:none;"
+  >
+
+  <button onclick="saveAndBack()">💾 保存して戻る</button>
+  <button onclick="showPage('home')">← 戻る</button>
+</div>
+
+    <div id="star-rating"></div>
+    <input type="hidden" id="star" value="5">
+
+    <button onclick="saveAndBack()">💾 保存して戻る</button>
+    <button onclick="showPage('home')">← 戻る</button>
+  </div>
 
   <!-- 📚 感想一覧画面 -->
   <div id="list" class="page">
