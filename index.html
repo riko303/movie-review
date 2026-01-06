@@ -27,6 +27,8 @@
     <label>
       📅 見た日
       <input type="date" id="date">
+        
+        
     </label>
 
     <div id="star-rating"></div>
@@ -35,6 +37,26 @@
     <button onclick="saveAndBack()">💾 保存して戻る</button>
     <button onclick="showPage('home')">← 戻る</button>
   </div>
+
+<label>
+  📺 何で見た？
+  <select id="watchBy">
+    <option value="">選んでね</option>
+    <option value="theater">🎥 映画館</option>
+    <option value="netflix">📺 Netflix</option>
+    <option value="amazon">🛒 Prime Video</option>
+    <option value="kinro">📼 金曜ロードショー</option>
+    <option value="dvd">💿 DVD / Blu-ray</option>
+    <option value="other">✏️ その他</option>
+  </select>
+</label>
+
+<input
+  type="text"
+  id="watchByOther"
+  placeholder="例：友だちの家、飛行機の中 など"
+  style="display:none;"
+>
 
   <!-- 📚 感想一覧画面 -->
   <div id="list" class="page">
