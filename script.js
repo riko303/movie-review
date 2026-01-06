@@ -13,50 +13,33 @@ function showPage(id) {
   }
 }
 
-function saveReview() {
-  
-  const title = document.getElementById("title").value;
-  const memo = document.getElementById("memo").value;
-  const star = parseFloat(document.getElementById("star").value);
-  const dateInput = document.getElementById("date").value;
-  const date = dateInput || new Date().toLocaleDateString();
-
-  if (!title || !memo) {
-    alert("作品名と感想を入れてね！");
-    return;
-  }
-
-  // ⭐ ここが④！！！
-  if (editingIndex === null) {
-    const watchBy = document.getElementById("watchBy").value;
+const watchBy = document.getElementById("watchBy").value;
 const watchByOther = document.getElementById("watchByOther").value;
 
-reviews.push({
-  title,
-  memo,
-  star,
-  date,
-  watchBy,
-  watchByOther
-});
-
-  } else {
-    reviews[editingIndex] = { title, memo, star, date };
-    editingIndex = null;
-  }
-
-  localStorage.setItem("reviews", JSON.stringify(reviews));
-
-  setTimeout(() => {
-    showReviews();
-  }, 50);
-
-  // 入力リセット
-  document.getElementById("title").value = "";
-  document.getElementById("memo").value = "";
-  document.getElementById("star").value = "5";
-  document.getElementById("date").value = "";
+if (editingIndex === null) {
+  reviews.push({
+    title,
+    memo,
+    star,
+    date,
+    watchBy,
+    watchByOther
+  });
+} else {
+  reviews[editingIndex] = {
+    title,
+    memo,
+    star,
+    date,
+    watchBy,
+    watchByOther
+  };
+  editingIndex = null;
 }
+
+document.getElementById("watchBy").value = "";
+document.getElementById("watchByOther").value = "";
+document.getElementById("watchByOther").style.display = "none";
 
 function clearForm() {
   document.getElementById("title").value = "";
