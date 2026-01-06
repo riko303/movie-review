@@ -138,6 +138,9 @@ function saveAndBack() {
   showPage("home");
 }
 
+watchBy: "other",
+watchByOther: "友だちの家でDVD"
+
 showReviews();
 
   
