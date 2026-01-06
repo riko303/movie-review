@@ -141,6 +141,18 @@ function saveAndBack() {
 watchBy: "other",
 watchByOther: "友だちの家でDVD"
 
+const watchBySelect = document.getElementById("watchBy");
+const otherInput = document.getElementById("watchByOther");
+
+watchBySelect.addEventListener("change", () => {
+  if (watchBySelect.value === "other") {
+    otherInput.style.display = "block";
+  } else {
+    otherInput.style.display = "none";
+    otherInput.value = "";
+  }
+});
+
 showReviews();
 
   
