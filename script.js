@@ -138,9 +138,6 @@ function saveAndBack() {
   showPage("home");
 }
 
-watchBy: "other",
-watchByOther: "友だちの家でDVD"
-
 const watchBySelect = document.getElementById("watchBy");
 const otherInput = document.getElementById("watchByOther");
 
