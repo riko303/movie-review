@@ -144,7 +144,7 @@ watchBySelect.addEventListener("change", () => {
   }
 });
 
-document.getElementById("backButton").style.display = "none";
+document.getElementById("showPage('home')").style.display = "none";
 editingIndex = null;
 
 showReviews();
