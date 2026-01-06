@@ -28,7 +28,18 @@ function saveReview() {
 
   // ⭐ ここが④！！！
   if (editingIndex === null) {
-    reviews.push({ title, memo, star, date });
+    const watchBy = document.getElementById("watchBy").value;
+const watchByOther = document.getElementById("watchByOther").value;
+
+reviews.push({
+  title,
+  memo,
+  star,
+  date,
+  watchBy,
+  watchByOther
+});
+
   } else {
     reviews[editingIndex] = { title, memo, star, date };
     editingIndex = null;
