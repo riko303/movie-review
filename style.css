@@ -68,10 +68,8 @@ button {
 /* ▼ 画面切り替え用（安全版） */
 .page {
   display: none;
-  position: relative;
 }
 
 .page.active {
   display: block;
-  pointer-events: auto;
 }
