@@ -17,31 +17,67 @@ function saveReview() {
     return;
   }
 
-  reviews.push({ title, memo });
+  if (editingIndex === null) {
+    // 新規保存
+    reviews.push({ title, memo });
+  } else {
+    // ✏️ 上書き保存
+    reviews[editingIndex] = { title, memo };
+    editingIndex = null;
+  }
 
-  // ⭐ これが超大事！！
   localStorage.setItem("reviews", JSON.stringify(reviews));
 
-  // 入力リセット
   titleInput.value = "";
   memoInput.value = "";
 }
+
 
 function showReviews() {
   const output = document.getElementById("output");
   output.innerHTML = "";
 
-  reviews.forEach(r => {
+  reviews.forEach((r, index) => {
     const div = document.createElement("div");
-    div.textContent = `${r.title}：${r.memo}`;
+    div.className = "review";
+
+    const text = document.createElement("p");
+    text.textContent = `${r.title}：${r.memo}`;
+    div.appendChild(text);
+
+    // ✏️ 編集ボタン
+    const editBtn = document.createElement("button");
+    editBtn.textContent = "✏️ 編集";
+    editBtn.onclick = () => editReview(index);
+    div.appendChild(editBtn);
+
+    // 🗑 削除ボタン
+    const delBtn = document.createElement("button");
+    delBtn.textContent = "🗑 削除";
+    delBtn.onclick = () => deleteReview(index);
+    div.appendChild(delBtn);
+
     output.appendChild(div);
   });
 }
 
-document.getElementById("listBtn").onclick = () => {
+function editReview(index) {
+  const r = reviews[index];
+
+  titleInput.value = r.title;
+  memoInput.value = r.memo;
+
+  editingIndex = index;
+  showPage("write");
+}
+
+function deleteReview(index) {
+  if (!confirm("この感想を削除する？")) return;
+
+  reviews.splice(index, 1);
+  localStorage.setItem("reviews", JSON.stringify(reviews));
   showReviews();
-  showPage("list");
-};
+}
 
 function saveAndBack() {
   saveReview();
