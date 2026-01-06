@@ -95,3 +95,8 @@ const other = document.getElementById("watchByOther");
 watchBy.addEventListener("change", () => {
   other.style.display = watchBy.value === "other" ? "block" : "none";
 });
+
+document.getElementById("listBtn").onclick = () => {
+  showReviews();
+  showPage("list");
+};
