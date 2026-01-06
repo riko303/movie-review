@@ -1,6 +1,4 @@
-reviews = JSON.parse(localStorage.getItem("reviews")) || [];
-
-let reviews = [];
+let reviews = JSON.parse(localStorage.getItem("reviews")) || [];
 let editingIndex = null;
 
 function showPage(id) {
@@ -45,8 +43,6 @@ document.getElementById("listBtn").onclick = () => {
   showPage("list");
 };
 
-
-
 function saveAndBack() {
   saveReview();
   showPage("home");
@@ -56,7 +52,6 @@ const titleInput = document.getElementById("title");
 const memoInput = document.getElementById("memo");
 
 document.getElementById("plusBtn").onclick = () => showPage("write");
-document.getElementById("listBtn").onclick = () => showPage("list");
 
 const watchBy = document.getElementById("watchBy");
 const other = document.getElementById("watchByOther");
