@@ -102,6 +102,18 @@ watchBy.addEventListener("change", () => {
   other.style.display = watchBy.value === "other" ? "block" : "none";
 });
 
+function displayResults(results) {
+  resultsDiv.innerHTML = "";
+
+  results.forEach(movie => {
+    const div = document.createElement("div");
+    div.textContent = `${movie.title} (${movie.release_date?.slice(0,4)})`;
+    
+    div.onclick = () => selectMovie(movie);
+    resultsDiv.appendChild(div);
+  });
+}
+
 document.getElementById("listBtn").onclick = () => {
   showReviews();
   showPage("list");
