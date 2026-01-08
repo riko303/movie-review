@@ -2,6 +2,7 @@ let reviews = JSON.parse(localStorage.getItem("reviews")) || [];
 let editingIndex = null;
 
 function searchMovie() {
+  const titleInput = document.getElementById("title");
   const title = titleInput.value.trim();
   if (!title) return;
 
