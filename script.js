@@ -132,6 +132,17 @@ function selectMovie(movie) {
   }
 }
 
+function showMovie(movie) {
+  const posterArea = document.getElementById("poster-area");
+
+  if (!posterArea) return;
+
+  posterArea.innerHTML = `
+    <img src="https://image.tmdb.org/t/p/w300${movie.poster_path}" alt="ポスター">
+    <p>${movie.title}</p>
+  `;
+}
+
 document.getElementById("listBtn").onclick = () => {
   showReviews();
   showPage("list");
