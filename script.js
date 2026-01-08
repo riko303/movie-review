@@ -1,11 +1,16 @@
 let reviews = JSON.parse(localStorage.getItem("reviews")) || [];
 let editingIndex = null;
 
-fetch(`https://api.themoviedb.org/3/search/movie?api_key=APIキー&language=ja-JP&query=${title}`)
-  .then(res => res.json())
-  .then(data => {
-    displayResults(data.results.slice(0, 5));
-  });
+function searchMovie() {
+  const title = titleInput.value.trim();
+  if (!title) return;
+
+  fetch(`https://api.themoviedb.org/3/search/movie?api_key=APIキー&language=ja-JP&query=${title}`)
+    .then(res => res.json())
+    .then(data => {
+      displayResults(data.results.slice(0, 5));
+    });
+}
 
 function showPage(id) {
   document.querySelectorAll(".page").forEach(p => {
