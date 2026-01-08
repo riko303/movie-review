@@ -119,6 +119,16 @@ function displayResults(results) {
   });
 }
 
+function selectMovie(movie) {
+  titleInput.value = movie.title;
+  storyInput.value = movie.overview;
+
+  if (movie.poster_path) {
+    imageUrlInput.value =
+      "https://image.tmdb.org/t/p/w500" + movie.poster_path;
+  }
+}
+
 document.getElementById("listBtn").onclick = () => {
   showReviews();
   showPage("list");
