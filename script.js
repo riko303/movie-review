@@ -147,5 +147,3 @@ document.getElementById("listBtn").onclick = () => {
   showReviews();
   showPage("list");
 };
-
-//test
