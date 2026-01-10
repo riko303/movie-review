@@ -1,3 +1,4 @@
+const API_KEY = "5d51c21ec79a66b6eaa6259d7b129a4e";
 
 let reviews = JSON.parse(localStorage.getItem("reviews")) || [];
 let editingIndex = null;
