@@ -45,6 +45,15 @@ document.addEventListener("DOMContentLoaded", () => {
       starContainer.appendChild(star);
     }
   }
+  
+  const listContainer = document.getElementById("review-list");
+
+reviews.forEach((review) => {
+  const item = document.createElement("div");
+  item.innerHTML = `<h3>${review.title}</h3>
+                    <p>${createStarDisplay(review.star)}</p>`;
+  listContainer.appendChild(item);
+});
 
   // 最初に表示
   createStars();
