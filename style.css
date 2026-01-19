@@ -4,6 +4,7 @@ body {
   background: #f5f5f5;
   padding: 20px;
   margin: 0;
+  position: relative; /* ← これ追加 */
 }
 
 /* ===== 入力系 ===== */
@@ -18,7 +19,7 @@ input, textarea {
 textarea {
   max-height: 60vh;
   overflow-y: auto;
-  /* z-index は消す */
+  position: static; /* relativeは消す */
 }
 
 /* ===== ボタン ===== */
@@ -45,7 +46,7 @@ button {
 /* ===== ページ切り替え ===== */
 .page {
   display: none;
-  position: absolute; /* 画面全体を覆う */
+  position: absolute; /* 全画面 */
   top: 0;
   left: 0;
   width: 100%;
@@ -59,8 +60,9 @@ button {
 
 .page.active {
   display: block;
-  z-index: 1; /* activeのページを前面に */
+  z-index: 1;
 }
+
 
 /* ===== メディアクエリ ===== */
 @media (max-width: 600px) {
