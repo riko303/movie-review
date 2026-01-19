@@ -112,26 +112,23 @@ div.appendChild(tagLine);
   }
 
   // ===== ボタン =====
-  plusBtn.onclick = () => showPage("write");
+plusBtn.onclick = () => {
+  showPage("write");
+};
 
-  listBtn.onclick = () => {
-    showReviews();
-    showPage("list");
-  };
+listBtn.onclick = () => {
+  showReviews();
+  showPage("list");
+};
 
-  saveBackBtn.onclick = () => {
-    saveReview();
-    showPage("home");
-  };
-
-  backHomeBtn.onclick = () => {
-    showPage("home");
-  };
-  
-  const backHomeFromListBtn = document.getElementById("backHomeFromListBtn");
-
-backHomeFromListBtn.onclick = () => {
+saveBackBtn.onclick = () => {
+  saveReview();
   showPage("home");
 };
 
+// ← 戻る / ホーム（共通）
+document.querySelectorAll(".backHomeBtn").forEach(btn => {
+  btn.onclick = () => {
+    showPage("home");
+  };
 });
