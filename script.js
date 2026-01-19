@@ -127,5 +127,11 @@ div.appendChild(tagLine);
   backHomeBtn.onclick = () => {
     showPage("home");
   };
+  
+  const backHomeFromListBtn = document.getElementById("backHomeFromListBtn");
+
+backHomeFromListBtn.onclick = () => {
+  showPage("home");
+};
 
 });
