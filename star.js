@@ -10,7 +10,7 @@ function createStarDisplay(starCount) {
   return stars;
 }
 
-window.onload = () => {
+document.addEventListener("DOMContentLoaded", () => {
   const starContainer = document.getElementById("star-rating");
   const starInput = document.getElementById("star");
 
@@ -57,4 +57,4 @@ window.onload = () => {
   }
 
   createStars();
-};
+});
