@@ -13,7 +13,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const plusBtn = document.getElementById("plusBtn");
   const listBtn = document.getElementById("listBtn");
   const saveBackBtn = document.getElementById("saveBackBtn");
-  const backHomeBtn = document.getElementById("backHomeBtn");
+  
 
   // ===== ページ切り替え =====
   function showPage(id) {
