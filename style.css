@@ -1,3 +1,4 @@
+/* ===== 全体 ===== */
 body {
   font-family: sans-serif;
   background: #f5f5f5;
@@ -5,8 +6,7 @@ body {
   margin: 0;
 }
 
-/* ===== 入力系 ===== */
-input, textarea {
+input, textarea, select {
   width: 100%;
   margin-bottom: 10px;
   padding: 8px;
@@ -20,7 +20,6 @@ textarea {
   position: static;
 }
 
-/* ===== ボタン ===== */
 button {
   padding: 10px 16px;
   background: #6c9eff;
@@ -33,7 +32,6 @@ button {
   cursor: pointer;
 }
 
-/* ===== レビュー表示 ===== */
 .review {
   background: white;
   margin-top: 10px;
@@ -41,7 +39,6 @@ button {
   border-radius: 6px;
 }
 
-/* ===== ページ切り替え ===== */
 .page {
   display: none;
 }
@@ -50,9 +47,8 @@ button {
   display: block;
 }
 
-/* ===== メディアクエリ ===== */
 @media (max-width: 600px) {
   body { padding: 10px; }
-  input, textarea { font-size: 14px; }
+  input, textarea, select { font-size: 14px; }
   button { font-size: 14px; }
 }
