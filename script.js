@@ -9,6 +9,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const dateInput = document.getElementById("date");
   const watchBy = document.getElementById("watchBy");
   const watchByOther = document.getElementById("watchByOther");
+  const starContainer = document.getElementById("star-rating");
 
   const plusBtn = document.getElementById("plusBtn");
   const listBtn = document.getElementById("listBtn");
@@ -20,14 +21,34 @@ document.addEventListener("DOMContentLoaded", () => {
     document.getElementById(id).classList.add("active");
   }
 
-  // 星表示
-  function createStarDisplay(starCount){
-    let stars = "";
+  // 星表示（ハーフスター対応）
+  function renderStars(){
+    starContainer.innerHTML = "";
+    const value = Number(starInput.value) || 5;
+
     for(let i=1;i<=5;i++){
-      stars += starCount>=i ? "★" : "☆";
+      const span = document.createElement("span");
+
+      if(i <= Math.floor(value)) span.textContent = "★";
+      else if(i === Math.ceil(value) && value % 1 === 0.5) {
+        span.textContent = "☆";
+        span.classList.add("half");
+      } else span.textContent = "☆";
+
+      // クリック処理
+      span.onclick = (e) => {
+        const rect = e.target.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const newValue = i - (x < rect.width / 2 ? 0.5 : 0);
+        starInput.value = newValue;
+        renderStars();
+      };
+
+      starContainer.appendChild(span);
     }
-    return stars;
   }
+
+  renderStars();
 
   // 保存
   function saveReview(){
@@ -59,6 +80,7 @@ document.addEventListener("DOMContentLoaded", () => {
     watchBy.value = "";
     watchByOther.value = "";
     document.querySelectorAll('#tag-area input').forEach(input=>input.checked=false);
+    renderStars();
   }
 
   // 一覧表示
@@ -68,7 +90,7 @@ document.addEventListener("DOMContentLoaded", () => {
       const div = document.createElement("div");
       div.className="review";
       div.innerHTML = `<h3>${r.title}</h3>
-                       <p>${createStarDisplay(r.star)}</p>
+                       <p>${"★".repeat(Math.floor(r.star)) + (r.star % 1 ? "⯨" : "") + "☆".repeat(5 - Math.ceil(r.star))}</p>
                        <p>${r.memo}</p>
                        <p>${r.tags.map(t=>'#'+t).join(' ')}</p>
                        <p>📅 ${r.date || ''} | 視聴: ${r.watch || ''}</p>`;
@@ -85,6 +107,7 @@ document.addEventListener("DOMContentLoaded", () => {
           input.checked = r.tags.includes(input.value);
         });
         editingIndex=i;
+        renderStars();
         showPage("write");
       };
       const delBtn = document.createElement("button");
