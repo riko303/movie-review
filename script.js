@@ -3,6 +3,28 @@
 let reviews = JSON.parse(localStorage.getItem("reviews")) || [];
 let editingIndex = null;
 
+function saveReview() {
+  const title = titleInput.value;
+  const memo = memoInput.value;
+  const star = parseFloat(document.getElementById("star").value);
+
+  if (!title || !memo) {
+    alert("作品名と感想を入れてね！");
+    return;
+  }
+
+  if (editingIndex === null) {
+    reviews.push({ title, memo, star });
+  } else {
+    reviews[editingIndex] = { title, memo, star };
+    editingIndex = null;
+  }
+
+  localStorage.setItem("reviews", JSON.stringify(reviews));
+
+  titleInput.value = "";
+  memoInput.value = "";
+}
 
 function showPage(id) {
   document.querySelectorAll(".page").forEach(p => {
