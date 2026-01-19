@@ -57,6 +57,18 @@ function showReviews() {
     const text = document.createElement("p");
     text.textContent = `${r.title}：${r.memo}`;
     div.appendChild(text);
+    
+    const title = document.createElement("h3");
+title.textContent = r.title;
+div.appendChild(title);
+
+const stars = document.createElement("p");
+stars.textContent = createStarDisplay(r.star || 0);
+div.appendChild(stars);
+
+const memo = document.createElement("p");
+memo.textContent = r.memo;
+div.appendChild(memo);
 
     // ✏️ 編集ボタン
     const editBtn = document.createElement("button");
