@@ -16,7 +16,6 @@ input, textarea, select {
 textarea {
   max-height: 60vh;
   overflow-y: auto;
-  position: static;
 }
 
 button {
@@ -46,35 +45,28 @@ button {
   display: block;
 }
 
-/* 星評価用 */
+/* ⭐ 星評価用 */
 #star-rating {
   font-size: 32px;
   display: inline-block;
-  direction: ltr;
 }
 
 #star-rating span {
   position: relative;
   display: inline-block;
   cursor: pointer;
-  color: lightgray; /* 背景の星 */
+  color: lightgray; /* 星の背景色 */
 }
 
 #star-rating span.full {
-  color: gold; /* 全部塗りの星 */
+  color: gold; /* 塗りつぶしの色 */
 }
 
 #star-rating span.half::before {
   content: "★";
   position: absolute;
   left: 0;
-  width: 50%; /* 左半分だけ色をつける */
+  width: 50%;
   overflow: hidden;
   color: gold;
-}
-
-@media (max-width: 600px) {
-  body { padding: 10px; }
-  input, textarea, select { font-size: 14px; }
-  button { font-size: 14px; }
 }
