@@ -45,28 +45,3 @@ button {
   display: block;
 }
 
-/* ⭐ 星評価用 */
-#star-rating {
-  font-size: 32px;
-  display: inline-block;
-}
-
-#star-rating span {
-  position: relative;
-  display: inline-block;
-  cursor: pointer;
-  color: lightgray; /* 星の背景色 */
-}
-
-#star-rating span.full {
-  color: gold; /* 塗りつぶしの色 */
-}
-
-#star-rating span.half::before {
-  content: "★";
-  position: absolute;
-  left: 0;
-  width: 50%;
-  overflow: hidden;
-  color: gold;
-}
