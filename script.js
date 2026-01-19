@@ -1,3 +1,14 @@
+// ⭐ 一覧用 星表示（グローバル）
+function createStarDisplay(starCount) {
+  let stars = "";
+  for (let i = 1; i <= 5; i++) {
+    if (starCount >= i) stars += "★";
+    else if (starCount >= i - 0.5) stars += "★";
+    else stars += "☆";
+  }
+  return stars;
+}
+
 document.addEventListener("DOMContentLoaded", () => {
 
   let reviews = JSON.parse(localStorage.getItem("reviews")) || [];
@@ -36,8 +47,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   function showPage(id) {
     document.querySelectorAll(".page").forEach(p => {
-      p.classList.remove("active");
-    });
+      p.classList.remove("active"));
     document.getElementById(id).classList.add("active");
   }
 
@@ -49,59 +59,38 @@ document.addEventListener("DOMContentLoaded", () => {
       const div = document.createElement("div");
       div.className = "review";
 
-      const title = document.createElement("h3");
-      title.textContent = r.title;
-      div.appendChild(title);
-
-      const stars = document.createElement("p");
-      stars.textContent = createStarDisplay(r.star || 0);
-      div.appendChild(stars);
-
-      const memo = document.createElement("p");
-      memo.textContent = r.memo;
-      div.appendChild(memo);
-
-      const editBtn = document.createElement("button");
-      editBtn.textContent = "✏️ 編集";
-      editBtn.onclick = () => editReview(index);
-      div.appendChild(editBtn);
-
-      const delBtn = document.createElement("button");
-      delBtn.textContent = "🗑 削除";
-      delBtn.onclick = () => deleteReview(index);
-      div.appendChild(delBtn);
+      div.innerHTML = `
+        <h3>${r.title}</h3>
+        <p>${createStarDisplay(r.star || 0)}</p>
+        <p>${r.memo}</p>
+        <button onclick="editReview(${index})">✏️ 編集</button>
+        <button onclick="deleteReview(${index})">🗑 削除</button>
+      `;
 
       output.appendChild(div);
     });
   }
 
-  function editReview(index) {
+  // HTMLから呼ぶ用
+  window.saveAndBack = function () {
+    saveReview();
+    showPage("home");
+  };
+
+  window.editReview = function (index) {
     const r = reviews[index];
     titleInput.value = r.title;
     memoInput.value = r.memo;
     document.getElementById("star").value = r.star;
     editingIndex = index;
     showPage("write");
-  }
+  };
 
-  function deleteReview(index) {
+  window.deleteReview = function (index) {
     if (!confirm("この感想を削除する？")) return;
     reviews.splice(index, 1);
     localStorage.setItem("reviews", JSON.stringify(reviews));
     showReviews();
-  }
-
-window.onload = () => {
-
-  window.createStarDisplay = function (starCount) {
-    let stars = "";
-    for (let i = 1; i <= 5; i++) {
-      if (starCount >= i) stars += "★";
-      else if (starCount >= i - 0.5) stars += "★";
-      else stars += "☆";
-    }
-    return stars;
   };
 
-};
-};
+});
