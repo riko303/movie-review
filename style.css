@@ -36,10 +36,6 @@ button {
   position: relative;
 }
 
-.page:not(.active) {
-  pointer-events: none;
-}
-
 textarea {
   max-height: 60vh;
 }
