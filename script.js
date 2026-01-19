@@ -22,29 +22,39 @@ function showPage(id) {
   document.getElementById(id).classList.add("active");
 }
 
-function saveReview() {
-  const title = titleInput.value;
-  const memo = memoInput.value;
-  const star = parseFloat(document.getElementById("star").value);
+function showReviews() {
+  const output = document.getElementById("output");
+  output.innerHTML = "";
 
-  if (!title || !memo) {
-    alert("作品名と感想を入れてね！");
-    return;
-  }
+  reviews.forEach((r, index) => {
+    const div = document.createElement("div");
+    div.className = "review";
 
-  if (editingIndex === null) {
-    reviews.push({ title, memo, star });
-  } else {
-    reviews[editingIndex] = { title, memo, star };
-    editingIndex = null;
-  }
+    const title = document.createElement("h3");
+    title.textContent = r.title;
+    div.appendChild(title);
 
-  localStorage.setItem("reviews", JSON.stringify(reviews));
+    const stars = document.createElement("p");
+    stars.textContent = createStarDisplay(r.star || 0);
+    div.appendChild(stars);
 
-  titleInput.value = "";
-  memoInput.value = "";
+    const memo = document.createElement("p");
+    memo.textContent = r.memo;
+    div.appendChild(memo);
+
+    const editBtn = document.createElement("button");
+    editBtn.textContent = "✏️ 編集";
+    editBtn.onclick = () => editReview(index);
+    div.appendChild(editBtn);
+
+    const delBtn = document.createElement("button");
+    delBtn.textContent = "🗑 削除";
+    delBtn.onclick = () => deleteReview(index);
+    div.appendChild(delBtn);
+
+    output.appendChild(div);
+  });
 }
-
 
 function showReviews() {
   const output = document.getElementById("output");
