@@ -47,21 +47,30 @@ button {
 }
 
 /* 星評価用 */
-#star-rating span {
+#star-rating {
   font-size: 32px;
-  cursor: pointer;
   display: inline-block;
-  position: relative;
-  color: gold;
-  user-select: none;
+  direction: ltr;
 }
+
+#star-rating span {
+  position: relative;
+  display: inline-block;
+  cursor: pointer;
+  color: lightgray; /* 背景の星 */
+}
+
+#star-rating span.full {
+  color: gold; /* 全部塗りの星 */
+}
+
 #star-rating span.half::before {
   content: "★";
   position: absolute;
   left: 0;
-  top: 0;
-  width: 50%;
+  width: 50%; /* 左半分だけ色をつける */
   overflow: hidden;
+  color: gold;
 }
 
 @media (max-width: 600px) {
