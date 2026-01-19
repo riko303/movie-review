@@ -12,8 +12,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
   const plusBtn = document.getElementById("plusBtn");
   const listBtn = document.getElementById("listBtn");
-  const saveBtn = document.getElementById("saveBtn");
-  const backBtn = document.getElementById("backBtn");
+  const saveBackBtn = document.getElementById("saveBackBtn");
+  const backHomeBtn = document.getElementById("backHomeBtn");
 
   // ===== ページ切り替え =====
   function showPage(id) {
@@ -55,9 +55,6 @@ document.addEventListener("DOMContentLoaded", () => {
     titleInput.value = "";
     memoInput.value = "";
     starInput.value = 0;
-
-    showReviews();
-    showPage("home");
   }
 
   // ===== 一覧表示 =====
@@ -99,24 +96,21 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  // ===== ボタンイベント =====
- const plusBtn = document.getElementById("plusBtn");
-const listBtn = document.getElementById("listBtn");
-const saveBackBtn = document.getElementById("saveBackBtn");
-const backHomeBtn = document.getElementById("backHomeBtn");
+  // ===== ボタン =====
+  plusBtn.onclick = () => showPage("write");
 
-plusBtn.onclick = () => showPage("write");
+  listBtn.onclick = () => {
+    showReviews();
+    showPage("list");
+  };
 
-listBtn.onclick = () => {
-  showReviews();
-  showPage("list");
-};
+  saveBackBtn.onclick = () => {
+    saveReview();
+    showPage("home");
+  };
 
-saveBackBtn.onclick = () => {
-  saveAndBack();
-};
+  backHomeBtn.onclick = () => {
+    showPage("home");
+  };
 
-backHomeBtn.onclick = () => {
-  showPage("home");
-};
 });
