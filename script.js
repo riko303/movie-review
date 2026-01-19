@@ -25,6 +25,7 @@ function showPage(id) {
 function saveReview() {
   const title = titleInput.value;
   const memo = memoInput.value;
+  const star = parseFloat(document.getElementById("star").value);
 
   if (!title || !memo) {
     alert("作品名と感想を入れてね！");
@@ -32,11 +33,9 @@ function saveReview() {
   }
 
   if (editingIndex === null) {
-    // 新規保存
-    reviews.push({ title, memo });
+    reviews.push({ title, memo, star });
   } else {
-    // ✏️ 上書き保存
-    reviews[editingIndex] = { title, memo };
+    reviews[editingIndex] = { title, memo, star };
     editingIndex = null;
   }
 
@@ -148,4 +147,3 @@ document.getElementById("listBtn").onclick = () => {
   showPage("list");
 };
 
-//testtest
