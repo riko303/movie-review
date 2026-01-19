@@ -12,126 +12,88 @@ document.addEventListener("DOMContentLoaded", () => {
     showPage("list");
   };
 
-let reviews = JSON.parse(localStorage.getItem("reviews")) || [];
-let editingIndex = null;
+  function saveReview() {
+    const title = titleInput.value;
+    const memo = memoInput.value;
+    const star = parseFloat(document.getElementById("star").value);
 
-function saveReview() {
-  const title = titleInput.value;
-  const memo = memoInput.value;
-  const star = parseFloat(document.getElementById("star").value);
+    if (!title || !memo) {
+      alert("作品名と感想を入れてね！");
+      return;
+    }
 
-  if (!title || !memo) {
-    alert("作品名と感想を入れてね！");
-    return;
+    if (editingIndex === null) {
+      reviews.push({ title, memo, star });
+    } else {
+      reviews[editingIndex] = { title, memo, star };
+      editingIndex = null;
+    }
+
+    localStorage.setItem("reviews", JSON.stringify(reviews));
+    titleInput.value = "";
+    memoInput.value = "";
   }
 
-  if (editingIndex === null) {
-    reviews.push({ title, memo, star });
-  } else {
-    reviews[editingIndex] = { title, memo, star };
-    editingIndex = null;
+  function showPage(id) {
+    document.querySelectorAll(".page").forEach(p => {
+      p.classList.remove("active");
+    });
+    document.getElementById(id).classList.add("active");
   }
 
-  localStorage.setItem("reviews", JSON.stringify(reviews));
+  function showReviews() {
+    const output = document.getElementById("output");
+    output.innerHTML = "";
 
-  titleInput.value = "";
-  memoInput.value = "";
-}
+    reviews.forEach((r, index) => {
+      const div = document.createElement("div");
+      div.className = "review";
 
-function showPage(id) {
-  document.querySelectorAll(".page").forEach(p => {
-    p.classList.remove("active");
-  });
-  document.getElementById(id).classList.add("active");
-}
+      const title = document.createElement("h3");
+      title.textContent = r.title;
+      div.appendChild(title);
 
-function showReviews() {
-  const output = document.getElementById("output");
-  output.innerHTML = "";
+      const stars = document.createElement("p");
+      stars.textContent = createStarDisplay(r.star || 0);
+      div.appendChild(stars);
 
-  reviews.forEach((r, index) => {
-    const div = document.createElement("div");
-    div.className = "review";
+      const memo = document.createElement("p");
+      memo.textContent = r.memo;
+      div.appendChild(memo);
 
-    const title = document.createElement("h3");
-    title.textContent = r.title;
-    div.appendChild(title);
+      const editBtn = document.createElement("button");
+      editBtn.textContent = "✏️ 編集";
+      editBtn.onclick = () => editReview(index);
+      div.appendChild(editBtn);
 
-    const stars = document.createElement("p");
-    stars.textContent = createStarDisplay(r.star || 0);
-    div.appendChild(stars);
+      const delBtn = document.createElement("button");
+      delBtn.textContent = "🗑 削除";
+      delBtn.onclick = () => deleteReview(index);
+      div.appendChild(delBtn);
 
-    const memo = document.createElement("p");
-    memo.textContent = r.memo;
-    div.appendChild(memo);
+      output.appendChild(div);
+    });
+  }
 
-    const editBtn = document.createElement("button");
-    editBtn.textContent = "✏️ 編集";
-    editBtn.onclick = () => editReview(index);
-    div.appendChild(editBtn);
+  function editReview(index) {
+    const r = reviews[index];
+    titleInput.value = r.title;
+    memoInput.value = r.memo;
+    document.getElementById("star").value = r.star;
+    editingIndex = index;
+    showPage("write");
+  }
 
-    const delBtn = document.createElement("button");
-    delBtn.textContent = "🗑 削除";
-    delBtn.onclick = () => deleteReview(index);
-    div.appendChild(delBtn);
+  function deleteReview(index) {
+    if (!confirm("この感想を削除する？")) return;
+    reviews.splice(index, 1);
+    localStorage.setItem("reviews", JSON.stringify(reviews));
+    showReviews();
+  }
 
-    output.appendChild(div);
-  });
-}
-
-
-
-function editReview(index) {
-  const r = reviews[index];
-
-  titleInput.value = r.title;
-  memoInput.value = r.memo;
-  document.getElementById("star").value = r.star;
-  
-  editingIndex = index;
-  showPage("write");
-}
-
-function deleteReview(index) {
-  if (!confirm("この感想を削除する？")) return;
-
-  reviews.splice(index, 1);
-  localStorage.setItem("reviews", JSON.stringify(reviews));
-  showReviews();
-}
-
-function saveAndBack() {
-  saveReview();
-  showPage("home");
-}
-
-const titleInput = document.getElementById("title");
-const memoInput = document.getElementById("memo");
-
-document.getElementById("plusBtn").onclick = () => showPage("write");
-
-const watchBy = document.getElementById("watchBy");
-const other = document.getElementById("watchByOther");
-
-watchBy.addEventListener("change", () => {
-  other.style.display = watchBy.value === "other" ? "block" : "none";
-});
-
-function showMovie(movie) {
-  const posterArea = document.getElementById("poster-area");
-
-  if (!posterArea) return;
-
-  posterArea.innerHTML = `
-    <img src="https://image.tmdb.org/t/p/w300${movie.poster_path}" alt="ポスター">
-    <p>${movie.title}</p>
-  `;
-}
-
-document.getElementById("listBtn").onclick = () => {
-  showReviews();
-  showPage("list");
-};
+  window.saveAndBack = function () {
+    saveReview();
+    showPage("home");
+  };
 
 });
-
