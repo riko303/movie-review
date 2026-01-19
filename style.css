@@ -52,3 +52,20 @@ button {
   input, textarea, select { font-size: 14px; }
   button { font-size: 14px; }
 }
+
+#star-rating span {
+  font-size: 24px;
+  cursor: pointer;
+  display: inline-block;
+  position: relative;
+  color: gold;
+  user-select: none;
+}
+#star-rating span::before {
+  content: "★";
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 50%; /* 左半分 */
+  overflow: hidden;
+}
