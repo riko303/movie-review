@@ -86,7 +86,8 @@ function editReview(index) {
 
   titleInput.value = r.title;
   memoInput.value = r.memo;
-
+  document.getElementById("star").value = r.star;
+  
   editingIndex = index;
   showPage("write");
 }
