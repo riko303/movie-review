@@ -91,9 +91,16 @@ document.addEventListener("DOMContentLoaded", () => {
     showReviews();
   }
 
-  window.saveAndBack = function () {
-    saveReview();
-    showPage("home");
+window.onload = () => {
+
+  window.createStarDisplay = function (starCount) {
+    let stars = "";
+    for (let i = 1; i <= 5; i++) {
+      if (starCount >= i) stars += "★";
+      else if (starCount >= i - 0.5) stars += "★";
+      else stars += "☆";
+    }
+    return stars;
   };
 
-});
+};
