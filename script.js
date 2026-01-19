@@ -100,12 +100,23 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   // ===== ボタンイベント =====
-  plusBtn.onclick = () => showPage("write");
-  listBtn.onclick = () => {
-    showReviews();
-    showPage("list");
-  };
-  saveBtn.onclick = saveReview;
-  backBtn.onclick = () => showPage("home");
+ const plusBtn = document.getElementById("plusBtn");
+const listBtn = document.getElementById("listBtn");
+const saveBackBtn = document.getElementById("saveBackBtn");
+const backHomeBtn = document.getElementById("backHomeBtn");
 
+plusBtn.onclick = () => showPage("write");
+
+listBtn.onclick = () => {
+  showReviews();
+  showPage("list");
+};
+
+saveBackBtn.onclick = () => {
+  saveAndBack();
+};
+
+backHomeBtn.onclick = () => {
+  showPage("home");
+};
 });
