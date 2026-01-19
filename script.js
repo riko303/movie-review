@@ -120,26 +120,7 @@ watchBy.addEventListener("change", () => {
   other.style.display = watchBy.value === "other" ? "block" : "none";
 });
 
-function displayResults(results) {
-  resultsDiv.innerHTML = "";
 
-  results.forEach(movie => {
-    const div = document.createElement("div");
-    div.textContent = `${movie.title} (${movie.release_date?.slice(0,4)})`;
-    
-    div.onclick = () => selectMovie(movie);
-    resultsDiv.appendChild(div);
-  });
-}
-
-function selectMovie(movie) {
-  titleInput.value = movie.title;
-  storyInput.value = movie.overview;
-
-  if (movie.poster_path) {
-    imageUrlInput.value =
-      "https://image.tmdb.org/t/p/w500" + movie.poster_path;
-  }
 }
 
 function showMovie(movie) {
