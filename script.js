@@ -29,37 +29,6 @@ document.addEventListener("DOMContentLoaded", () => {
     return stars;
   }
 
-  const starContainer = document.getElementById("star-rating");
-const starInput = document.getElementById("star");
-
-function renderStars() {
-  starContainer.innerHTML = "";
-  const value = Number(starInput.value) || 5;
-
-  for (let i = 1; i <= 5; i++) {
-    const span = document.createElement("span");
-    // ★全部ベース
-    span.textContent = "☆";
-    if (i <= Math.floor(value)) span.textContent = "★";
-    if (i === Math.ceil(value) && value % 1 === 0.5) span.textContent = "⯨"; // 半分表示用（任意の記号）
-
-    // クリック処理
-    span.onclick = (e) => {
-      const rect = e.target.getBoundingClientRect();
-      const x = e.clientX - rect.left;
-      const newValue = i - (x < rect.width / 2 ? 0.5 : 0);
-      starInput.value = newValue;
-      renderStars();
-    };
-
-    starContainer.appendChild(span);
-  }
-}
-
-// 初期表示
-renderStars();
-  
-
   // 保存
   function saveReview(){
     const title = titleInput.value.trim();
