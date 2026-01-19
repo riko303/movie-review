@@ -80,14 +80,22 @@ div.appendChild(tagLine);
 
       const editBtn = document.createElement("button");
       editBtn.textContent = "✏️ 編集";
+      
       editBtn.onclick = () => {
-        titleInput.value = r.title;
-        memoInput.value = r.memo;
-        starInput.value = r.star;
-        editingIndex = index;
-        showPage("write");
-      };
+  titleInput.value = r.title;
+  memoInput.value = r.memo;
+  starInput.value = r.star;
 
+  // ★ タグ復元
+  document
+    .querySelectorAll('#tag-area input')
+    .forEach(input => {
+      input.checked = r.tags?.includes(input.value) || false;
+    });
+
+  editingIndex = index;
+  showPage("write");
+};
       const delBtn = document.createElement("button");
       delBtn.textContent = "🗑 削除";
       delBtn.onclick = () => {
