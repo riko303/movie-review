@@ -45,45 +45,7 @@ function showReviews() {
   });
 }
 
-function showReviews() {
-  const output = document.getElementById("output");
-  output.innerHTML = "";
 
-  reviews.forEach((r, index) => {
-    const div = document.createElement("div");
-    div.className = "review";
-
-    const text = document.createElement("p");
-    text.textContent = `${r.title}：${r.memo}`;
-    div.appendChild(text);
-    
-    const title = document.createElement("h3");
-title.textContent = r.title;
-div.appendChild(title);
-
-const stars = document.createElement("p");
-stars.textContent = createStarDisplay(r.star || 0);
-div.appendChild(stars);
-
-const memo = document.createElement("p");
-memo.textContent = r.memo;
-div.appendChild(memo);
-
-    // ✏️ 編集ボタン
-    const editBtn = document.createElement("button");
-    editBtn.textContent = "✏️ 編集";
-    editBtn.onclick = () => editReview(index);
-    div.appendChild(editBtn);
-
-    // 🗑 削除ボタン
-    const delBtn = document.createElement("button");
-    delBtn.textContent = "🗑 削除";
-    delBtn.onclick = () => deleteReview(index);
-    div.appendChild(delBtn);
-
-    output.appendChild(div);
-  });
-}
 
 function editReview(index) {
   const r = reviews[index];
@@ -119,9 +81,6 @@ const other = document.getElementById("watchByOther");
 watchBy.addEventListener("change", () => {
   other.style.display = watchBy.value === "other" ? "block" : "none";
 });
-
-
-}
 
 function showMovie(movie) {
   const posterArea = document.getElementById("poster-area");
