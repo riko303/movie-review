@@ -20,3 +20,8 @@
   position: relative;
   z-index: 1;
 }
+
+button {
+  position: relative;
+  z-index: 10;
+}
