@@ -1,5 +1,6 @@
 
-document.addEventListener("DOMContentLoaded", () => {
+// star.js
+window.onload = () => {
   // ⭐ 個別評価用
   const starContainer = document.getElementById("star-rating");
   const starInput = document.getElementById("star");
@@ -65,7 +66,7 @@ document.addEventListener("DOMContentLoaded", () => {
     { title: "千と千尋", star: 5 },
   ];
 
-  const listContainer = document.getElementById("review-list");
+  const listContainer = document.getElementById("review-list") || document.getElementById("output");
 
   // レビュー一覧に表示
   reviews.forEach((review) => {
@@ -80,4 +81,4 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // 最初に個別星も表示
   createStars();
-});
+};
