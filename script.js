@@ -74,6 +74,10 @@ const checkedTags = Array.from(
         <p>${r.memo}</p>
       `;
 
+const tagLine = document.createElement("p");
+tagLine.textContent = r.tags?.map(t => `#${t}`).join(" ") || "";
+div.appendChild(tagLine);
+
       const editBtn = document.createElement("button");
       editBtn.textContent = "✏️ 編集";
       editBtn.onclick = () => {
