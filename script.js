@@ -21,7 +21,7 @@ document.addEventListener("DOMContentLoaded", () => {
     document.getElementById(id).classList.add("active");
   }
 
-  // 星表示（ハーフスター対応）
+  // 星評価描画（ハーフスター対応）
   function renderStars(){
     starContainer.innerHTML = "";
     const value = Number(starInput.value) || 5;
@@ -29,13 +29,12 @@ document.addEventListener("DOMContentLoaded", () => {
     for(let i=1;i<=5;i++){
       const span = document.createElement("span");
 
-      if(i <= Math.floor(value)) span.textContent = "★";
-      else if(i === Math.ceil(value) && value % 1 === 0.5) {
-        span.textContent = "☆";
-        span.classList.add("half");
-      } else span.textContent = "☆";
+      if(i <= Math.floor(value)) span.classList.add("full");
+      else if(i === Math.ceil(value) && value % 1 === 0.5) span.classList.add("half");
 
-      // クリック処理
+      span.textContent = "★";
+
+      // クリック処理（左右半分で0.5刻み）
       span.onclick = (e) => {
         const rect = e.target.getBoundingClientRect();
         const x = e.clientX - rect.left;
@@ -89,11 +88,23 @@ document.addEventListener("DOMContentLoaded", () => {
     reviews.forEach((r,i)=>{
       const div = document.createElement("div");
       div.className="review";
-      div.innerHTML = `<h3>${r.title}</h3>
-                       <p>${"★".repeat(Math.floor(r.star)) + (r.star % 1 ? "⯨" : "") + "☆".repeat(5 - Math.ceil(r.star))}</p>
-                       <p>${r.memo}</p>
-                       <p>${r.tags.map(t=>'#'+t).join(' ')}</p>
-                       <p>📅 ${r.date || ''} | 視聴: ${r.watch || ''}</p>`;
+
+      // 星をCSSで塗る
+      const starsDiv = document.createElement("div");
+      for(let j=1;j<=5;j++){
+        const span = document.createElement("span");
+        span.textContent = "★";
+        if(j <= Math.floor(r.star)) span.classList.add("full");
+        else if(j === Math.ceil(r.star) && r.star % 1 === 0.5) span.classList.add("half");
+        starsDiv.appendChild(span);
+      }
+
+      div.innerHTML += `<h3>${r.title}</h3>
+                        <p>${r.memo}</p>
+                        <p>${r.tags.map(t=>'#'+t).join(' ')}</p>
+                        <p>📅 ${r.date || ''} | 視聴: ${r.watch || ''}</p>`;
+      div.appendChild(starsDiv);
+
       const editBtn = document.createElement("button");
       editBtn.textContent="✏️ 編集";
       editBtn.onclick = ()=>{
@@ -110,6 +121,7 @@ document.addEventListener("DOMContentLoaded", () => {
         renderStars();
         showPage("write");
       };
+
       const delBtn = document.createElement("button");
       delBtn.textContent="🗑 削除";
       delBtn.onclick = ()=>{
@@ -118,6 +130,7 @@ document.addEventListener("DOMContentLoaded", () => {
         localStorage.setItem("reviews",JSON.stringify(reviews));
         showReviews();
       };
+
       div.appendChild(editBtn);
       div.appendChild(delBtn);
       output.appendChild(div);
