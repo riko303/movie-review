@@ -37,6 +37,9 @@ document.addEventListener("DOMContentLoaded", () => {
     const title = titleInput.value.trim();
     const memo = memoInput.value.trim();
     const star = Number(starInput.value) || 0;
+const checkedTags = Array.from(
+  document.querySelectorAll('#tag-area input:checked')
+).map(tag => tag.value);
 
     if (!title || !memo) {
       alert("作品名と感想を入れてね！");
@@ -44,9 +47,9 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     if (editingIndex === null) {
-      reviews.push({ title, memo, star });
+      reviews.push({ title, memo, star, tags: checkedTags });
     } else {
-      reviews[editingIndex] = { title, memo, star };
+      reviews[editingIndex] = { title, memo, star, tags: checkedTags };
       editingIndex = null;
     }
 
