@@ -29,11 +29,21 @@ button {
 
 .page {
   display: none;
+  position: absolute;  /* ← これで画面を重ねる */
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
 }
 
 .page.active {
   display: block;
-  position: relative;
+  position: absolute;   /* ← activeでも同じにする */
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;           /* ← 前面に出す */
 }
 
 textarea {
