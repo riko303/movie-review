@@ -15,3 +15,8 @@
   color: gold;
   pointer-events: none;
 }
+
+#star-rating {
+  position: relative;
+  z-index: 1;
+}
