@@ -1,4 +1,16 @@
+document.addEventListener("DOMContentLoaded", () => {
 
+  let reviews = JSON.parse(localStorage.getItem("reviews")) || [];
+  let editingIndex = null;
+
+  const titleInput = document.getElementById("title");
+  const memoInput = document.getElementById("memo");
+
+  document.getElementById("plusBtn").onclick = () => showPage("write");
+  document.getElementById("listBtn").onclick = () => {
+    showReviews();
+    showPage("list");
+  };
 
 let reviews = JSON.parse(localStorage.getItem("reviews")) || [];
 let editingIndex = null;
@@ -119,4 +131,6 @@ document.getElementById("listBtn").onclick = () => {
   showReviews();
   showPage("list");
 };
+
+});
 
