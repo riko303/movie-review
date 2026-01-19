@@ -1,19 +1,8 @@
-const API_KEY = "5d51c21ec79a66b6eaa6259d7b129a4e";
+
 
 let reviews = JSON.parse(localStorage.getItem("reviews")) || [];
 let editingIndex = null;
 
-function searchMovie() {
-  const titleInput = document.getElementById("title");
-  const title = titleInput.value.trim();
-  if (!title) return;
-
-  fetch(`https://api.themoviedb.org/3/search/movie?api_key=APIキー&language=ja-JP&query=${title}`)
-    .then(res => res.json())
-    .then(data => {
-      displayResults(data.results.slice(0, 5));
-    });
-}
 
 function showPage(id) {
   document.querySelectorAll(".page").forEach(p => {
