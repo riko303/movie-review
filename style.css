@@ -50,8 +50,7 @@ textarea {
 textarea {
   max-height: 60vh;
   overflow-y: auto;
-  position: relative;
-  z-index: 1;
+  
 }
 
 /* ▼ スマホでボタンが被らないように */
