@@ -91,13 +91,18 @@ document.addEventListener("DOMContentLoaded", () => {
 
       // 星をCSSで塗る
       const starsDiv = document.createElement("div");
-      for(let j=1;j<=5;j++){
-        const span = document.createElement("span");
-        span.textContent = "★";
-        if(j <= Math.floor(r.star)) span.classList.add("full");
-        else if(j === Math.ceil(r.star) && r.star % 1 === 0.5) span.classList.add("half");
-        starsDiv.appendChild(span);
-      }
+starsDiv.id = "star-rating"; // CSS適用
+for(let j=1;j<=5;j++){
+  const span = document.createElement("span");
+  span.textContent = "★";
+  if(j <= Math.floor(r.star)) {
+    span.classList.add("full");
+  } else if(j === Math.floor(r.star)+1 && r.star % 1 === 0.5) {
+    span.classList.add("half");
+  }
+  starsDiv.appendChild(span);
+}
+div.appendChild(starsDiv);
 
       div.innerHTML += `<h3>${r.title}</h3>
                         <p>${r.memo}</p>
